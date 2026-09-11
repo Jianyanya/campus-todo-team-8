@@ -21,4 +21,16 @@ public class TaskService {
     public List<Task> listAll() {
         return List.copyOf(tasks);
     }
+
+    public void completeTask(long id) {
+        Task task = tasks.stream()
+                .filter(candidate -> candidate.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("任务不存在: " + id));
+
+        if (task.isCompleted()) {
+            throw new IllegalStateException("任务已经完成: " + id);
+        }
+        task.complete();
+    }
 }
