@@ -57,7 +57,23 @@ git tag -a v0.1.0 -m "CampusTodo starter baseline"
 git push origin v0.1.0
 ```
 
-## 6. 协作约束
+## 6. 协作流程
+本项目遵循 GitHub Flow 开展团队开发，**main 分支只存放测试通过的稳定版本，禁止直接在 main 分支开发提交代码**。
+
+1. 开发前切换到 main，拉取远程最新代码：
+```bash
+git switch main
+git pull --ff-only origin main
+```
+2. 创建功能分支，分支命名规范：`feature/<issue号>-<简短主题>`，例如 `feature/3-ci-guide`。
+3. 在功能分支进行开发，做到小步提交；提交信息格式：`<type>: <描述>`，type 可选 `feat`/`test`/`ci`/`fix`/`docs`。
+4. 推送本地分支到远程，创建 Pull Request；PR 需要填写项目内置模板：关联 Issue（使用 `Closes #编号`）、填写修改说明、附上测试证据，完成自检清单。
+5. PR 会自动触发 GitHub Actions CI，运行 `mvn -B verify`；**必须等待 CI 全部通过绿灯**。
+6. 需要至少一名团队成员评审并 Approve；若提出修改意见，在当前分支补充提交修复。
+7. 评审完成、CI 校验通过后，方可合并入 main；合并完成后清理已经完成的功能分支。
+
+
+## 7. 协作约束
 
 - 一个功能分支只解决一个 Issue，禁止直接向 `main` 提交功能代码。
 - 提交信息采用 `<type>: <说明>`，例如 `test: specify task completion rules`。
