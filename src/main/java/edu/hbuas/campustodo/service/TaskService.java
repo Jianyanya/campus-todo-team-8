@@ -30,6 +30,9 @@ public class TaskService {
     }
 
     public List<Task> filterByPriority(Priority priority) {
+        if (priority == null) {
+            throw new IllegalArgumentException("筛选优先级不能为空");
+        }
         return tasks.stream()
                 .filter(task -> task.getPriority() == priority)
                 .toList();

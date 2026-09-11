@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TaskServiceFilterTest {
@@ -56,5 +57,13 @@ class TaskServiceFilterTest {
         List<Task> highTasks = service.filterByPriority(Priority.HIGH);
 
         assertTrue(highTasks.isEmpty());
+    }
+
+    @Test
+    void shouldRejectNullPriorityFilter() {
+        TaskService service = new TaskService();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> service.filterByPriority(null));
     }
 }
