@@ -64,7 +64,7 @@ git push origin v0.1.0
 ```bash
 git switch main
 git pull --ff-only origin main
-
+```
 2. 创建功能分支，分支命名规范：`feature/<issue号>-<简短主题>`，例如 `feature/3-ci-guide`。
 3. 在功能分支进行开发，做到小步提交；提交信息格式：`<type>: <描述>`，type 可选 `feat`/`test`/`ci`/`fix`/`docs`。
 4. 推送本地分支到远程，创建 Pull Request；PR 需要填写项目内置模板：关联 Issue（使用 `Closes #编号`）、填写修改说明、附上测试证据，完成自检清单。
