@@ -9,16 +9,25 @@ public class Task {
     private final long id;
     private final String title;
     private boolean completed;
+    private Priority priority;
 
     public Task(long id, String title) {
+        this(id, title, Priority.MEDIUM);
+    }
+
+    public Task(long id, String title, Priority priority) {
         if (id <= 0) {
             throw new IllegalArgumentException("任务编号必须为正数");
         }
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("任务标题不能为空");
         }
+        if (priority == null) {
+            throw new IllegalArgumentException("任务优先级不能为空");
+        }
         this.id = id;
         this.title = title.trim();
+        this.priority = priority;
     }
 
     public long getId() {
@@ -31,6 +40,17 @@ public class Task {
 
     public boolean isCompleted() {
         return completed;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        if (priority == null) {
+            throw new IllegalArgumentException("任务优先级不能为空");
+        }
+        this.priority = priority;
     }
 
     public void complete() {
